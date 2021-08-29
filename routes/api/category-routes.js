@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
       include:
         [{
           model: Product,
-          attributes: ["id", "product_name", "price", "stock", "category_id"]
+          attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
         }]
     });
     res.status(200).json(categoryData);
@@ -26,12 +26,12 @@ router.get('/:id', async (req, res) => {
       include:
       [{
         model: Product,
-        attributes: ["id", "product_name", "price", "stock", "category_id"]
+        attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
       }]
     });
     
     if (!categoryData) {
-      res.status(404).json({ message: "No category exists by this ID!" });
+      res.status(404).json({ message: 'No category exists by this ID!' });
       return;
     }
 
@@ -78,7 +78,7 @@ router.delete('/:id', async (req, res) => {
     });
 
     if (!categoryData) {
-      res.status(404).json({ message: "No category exists by this ID!" });
+      res.status(404).json({ message: 'No category exists by this ID!' });
       return;
     }
     res.status(200).json(categoryData);

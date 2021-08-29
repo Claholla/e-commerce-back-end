@@ -7,15 +7,15 @@ const { Product, Category, Tag, ProductTag } = require('../../models');
 router.get('/', async (req, res) => {
   try {
     const productData = await Product.findAll({
-      attributes: ["id", "product_name", "price", "stock"],
+      attributes: ['id', 'product_name', 'price', 'stock'],
       include:
         [{
           model: Category,
-          attributes: ["category_id", "category_name"]
+          attributes: ['category_name']
         },
         {
           model: Tag,
-          attributes: ["tag_id", "tag_name"]
+          attributes: ['tag_name']
         }]
     });
     res.status(200).json(productData);
@@ -28,20 +28,20 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const productData = await Product.findByPk(req.params.id, {
-      attributes: ["id", "product_name", "price", "stock"],
+      attributes: ['id', 'product_name', 'price', 'stock'],
       include:
       [{
         model: Category,
-        attributes: ["category_id", "category_name"]
+        attributes: ['category_name']
       },
       {
         model: Tag,
-        attributes: ["tag_id", "tag_name"]
+        attributes: ['tag_name']
       }]
     });
     
     if (!productData) {
-      res.status(404).json({ message: "No product exists by this ID!" });
+      res.status(404).json({ message: 'No product exists by this ID!' });
       return;
     }
 
@@ -55,7 +55,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', (req, res) => {
   /* req.body should look like this...
     {
-      product_name: "Basketball",
+      product_name: 'Basketball',
       price: 200.00,
       stock: 3,
       tagIds: [1, 2, 3, 4]
@@ -135,7 +135,7 @@ router.delete('/:id', async (req, res) => {
     });
 
     if (!productData) {
-      res.status(404).json({ message: "No product exists by this ID!" });
+      res.status(404).json({ message: 'No product exists by this ID!' });
       return;
     }
     res.status(200).json(productData);
